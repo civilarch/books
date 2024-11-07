@@ -1,0 +1,148 @@
+
+
+#--------------------------- 230605_002245
+$Drives = Get-PSDrive -PSProvider 'FileSystem'
+
+foreach($Drive in $drives) {
+
+    #counts files in given directory
+    Get-ChildItem -Path $Drive.Root -Recurse -File -ErrorAction SilentlyContinue -Force |
+        Measure-Object |
+        ForEach-Object { $_.Count }
+
+    #select largest file in given directory
+    Get-ChildItem -Path $Drive.Root -Recurse -File -ErrorAction SilentlyContinue -Force |
+        Sort-Object Length -Descending |
+        Select-Object -First 1
+
+    #get average file size in a given directory
+    Get-ChildItem -Path $Drive.Root -Recurse -File -ErrorAction SilentlyContinue -Force |
+        Measure-Object -Property Length -Average
+
+    #sum of file sizes in given directory 
+    (Get-ChildItem -Path $Drive.Root -Recurse -File -ErrorAction SilentlyContinue -Force |
+        Measure-Object -Sum Length).Sum
+
+}
+
+#--------------------------- 230605_002257
+#specify preferred measures
+$average_size = "MB"
+$individual_size = "GB"
+$total_size = "TB"
+
+Get-PSDrive -PSProvider FileSystem |ForEach-Object {
+
+    "`n$($_.Root)" |Write-Host -ForegroundColor Cyan
+
+    $details=$null
+    $details = Get-ChildItem -Path $_.Root -Recurse -File -ErrorAction SilentlyContinue -Force
+
+
+
+    "`nFile Count: $('{0:N0}' -f $details.count)" 
+
+
+
+    "Average size: "+"$([math]::round(($details |
+          Measure-Object -Property Length -Average |select -Property average).average /"1$($average_size)", 2))"+" $($average_size)"
+
+    "Total size: "+"$([math]::round(($details |
+          Measure-Object -Property Length -sum |select -Property sum).sum /"1$($total_size)", 2))"+" $($total_size)"
+
+
+    $details |
+        Sort-Object Length -Descending |
+        Select-Object -First 5 -Property @{L='Path';E ={$_.fullname}},@{L="Size $($individual_size)";E={[math]::round(($_.length) /"1$($individual_size)", 3)}} |ft
+
+    
+}
+
+#--------------------------- 230605_002339
+#Clearing the Host file
+Clear-Host
+
+#Get all the list of Servers
+$Machines = get-content "C:\Scripts\Servers.txt"
+
+#Get all the list of Disks to search
+$Disks = get-content "C:\Scripts\Disks.txt"
+
+#Lopping through specified servers
+foreach ($Machine in $Machines) 
+{
+#Lopping through each Disks
+    foreach ($Disk in $Disks) 
+    {
+        if (Test-Path \\$Machine\$Disk$) 
+        {
+            Write-Host Checking $Machine Disk $Disk -BackgroundColor DarkRed
+            Get-ChildItem -Path \\$Machine\$Disk$\ -Filter log4j.jar -Recurse -Name -Force | Out-File "C:\Scripts\Output\$Machine $Disk.txt"
+        }
+    }
+} 
+
+#--------------------------- 230605_002414
+gci 'C:\' -rec -force -include *.jar -ea 0 | `  
+foreach {select-string "JndiLookup.class" $_} | `  
+select -exp Path  
+
+#--------------------------- 230605_002700
+Get-ChildItem C:\temp -Include ('*.ppt', '*.pptx') -r -force -ea 0| select fullname, length,
+    @{l='LengthMB'; e={[math]::round(($_.Length/1MB), 2)}},
+    @{l='LengthGB'; e={[math]::round(($_.Length/1GB), 2)}},
+    creationtime, lastwritetime, LastAccessTime  |
+export-csv c:\temp\results.csv -notype
+
+#--------------------------- 230605_002819
+Get-ChildItem –Path "C:\PS\" -Recurse -Filter *.log
+
+|
+
+Foreach-Object {
+
+Remove-Item $_.FullName -WhatIF
+
+}
+
+#--------------------------- 230605_002858
+Get-ChildItem C:\ps\ -Recurse |
+
+Where-Object { $_.CreationTime -lt ($(Get-Date).AddDays(-10))} |
+
+ForEach-Object { remove-Item $_.FullName –whatif }
+
+#--------------------------- 230605_003005
+$files = Get-ChildItem C:\ps\ -Recurse *.log
+
+foreach ($f in $files){
+
+$outfile = $f.FullName + "_outlog"
+
+Get-Content $f.FullName | Where-Object { ($_ -match 'flush_log' -or $_ -match 'error') } | Set-Content $outfile
+
+}
+
+#--------------------------- 230605_003058
+gci -r| sort -descending -property length | select -first 10 name, length
+
+#--------------------------- 230605_003602
+gci h: -r| sort -descending -property length | select -first 10 name, @{Name="Gigabytes";Expression={[Math]::round($_.length / 1GB, 2)}}
+
+#--------------------------- 230605_003953
+Get-WMIObject -Query "SELECT * FROM Win32_LogicalDisk WHERE Name = 'C:' OR Name = 'X:'"
+
+#--------------------------- 230605_004103
+Get-WMIObject -class Win32_LogicalDisk -Filter 'drivetype=3' 
+
+#--------------------------- 230605_004253
+gwmi Win32_LogicalDisk -Filter 'drivetype=3'  | %{gci ($_.deviceid + '\') -recurse}
+
+#--------------------------- 230605_004309
+Get-WMIObject -class Win32_LogicalDisk -Filter 'drivetype=3' | ForEach {Get-ChildItem ($_.deviceid + '\') -recurse | Where-Object {$_.length -ge 100MB}}
+
+#--------------------------- 230605_004349
+gwmi win32_logicaldisk -Filter 'drivetype=3' | %{gci ($_.deviceid + '\') -recurse | ? {$_.length -ge 100MB}}
+
+#--------------------------- 230605_004457
+Get-WMIObject -class Win32_LogicalDisk -Filter 'drivetype=3' | ForEach {Get-ChildItem ($_.deviceid + '\') -recurse | Where-Object {$_.length -ge 100MB}} | Select Name,Directory,@{label='Size';expression={($_.Length)}},CreationTime,LastWriteTime,@{label='Owner';expression={((Get-Acl $_.fullname).Owner)}} | Sort-object Size | Format-Table

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pgr:powergrep xmlns:pgr="http://www.powergrep.com/powergrep42.xsd" version="4.2">
+	<actionfile>
+		<fileselection archives="1" globalmasks="1">
+			<drive name="F:">
+				<folder name="_installers">
+					<folder name="_linux">
+						<folder name="_ro_9">
+							<folder name="Ro">
+								<folder name="_add">
+									<folder name="_setup" marked="1" recursemasks="1"/>
+								</folder>
+							</folder>
+						</folder>
+					</folder>
+				</folder>
+			</drive>
+		</fileselection>
+		<action actiontype="replace" searchtype="literal" concurrent="1" casesensitive="1" wholewords="1" targettype="same" backuptype="single bak" backupdest="folder tree" backuplocation="C:\_vols\_d\_ess\PowerGREP_backup">
+			<searchtext>2_svrs</searchtext>
+			<replacetext>3_svrs</replacetext>
+			<sectioning sectiontype="whole file"/>
+			<context contexttype="line" numbering="1" extra="context"/>
+		</action>
+	</actionfile>
+</pgr:powergrep>

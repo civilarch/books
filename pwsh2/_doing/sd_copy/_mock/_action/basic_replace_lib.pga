@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pgr:powergrep xmlns:pgr="http://www.powergrep.com/powergrep42.xsd" version="4.2">
+	<actionfile>
+		<fileselection archives="1" globalmasks="1" includemasks="*.props;*.vcxproj;">
+			<drive name="E:">
+				<folder name="_lib_" marked="1" recursemasks="1"/>
+				<folder name="_lib_appl_" marked="1" recursemasks="1"/>
+			</drive>
+			<drive name="J:">
+				<folder name="__impo">
+					<folder name="_impose_PR_card" marked="1" recursemasks="1"/>
+				</folder>
+			</drive>
+		</fileselection>
+		<action actiontype="replace" searchtype="literal" concurrent="1" targettype="same" backuptype="single bak" backupdest="folder tree" backuplocation="C:\_vols\_d\_ess\PowerGREP_backup">
+			<searchtext>"'$(RTL_DLL)'!='Dynamic'"</searchtext>
+			<replacetext>"'$(RTL_DLL)'=='false'"</replacetext>
+			<sectioning sectiontype="whole file"/>
+			<context contexttype="line" numbering="1" extra="context"/>
+		</action>
+	</actionfile>
+</pgr:powergrep>

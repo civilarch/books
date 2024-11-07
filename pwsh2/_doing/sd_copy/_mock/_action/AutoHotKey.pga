@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pgr:powergrep xmlns:pgr="http://www.powergrep.com/powergrep42.xsd" version="4.2">
+	<actionfile>
+		<fileselection archives="1" globalmasks="1">
+			<drive name="C:">
+				<folder name="_var">
+					<folder name="_day">
+						<folder name="tools">
+							<folder name="_bin" marked="1" recursemasks="1"/>
+							<folder name="AutoHotkey_code" marked="1" recursemasks="1"/>
+						</folder>
+					</folder>
+				</folder>
+			</drive>
+		</fileselection>
+		<action actiontype="replace" searchtype="literal" concurrent="1" targettype="same" backuptype="single bak" backupdest="folder tree" backuplocation="C:\_usr\util\PowerGREP_backup">
+			<searchtext>do_sd_cur_my_daily_copy_to_drive</searchtext>
+			<replacetext/>
+			<sectioning sectiontype="whole file"/>
+			<context contexttype="line" numbering="1" extra="context"/>
+		</action>
+	</actionfile>
+</pgr:powergrep>

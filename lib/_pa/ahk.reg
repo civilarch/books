@@ -1,0 +1,15 @@
+Windows Registry Editor Version 5.00
+
+[HKCR\.ahk]
+@="ahk_auto_file"
+
+
+[HKCR\ahk_auto_file]
+
+[HKCR\ahk_auto_file\shell]
+
+[HKCR\ahk_auto_file\shell\open]
+
+[HKCR\ahk_auto_file\shell\open\command]
+@="\"C:\\_usr\\prg\\AutoHotkey\\AutoHotkey.exe\" \"%1\""
+

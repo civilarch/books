@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pgr:powergrep xmlns:pgr="http://www.powergrep.com/powergrep42.xsd" version="4.2">
+	<actionfile>
+		<fileselection archives="1" globalmasks="1" includemasks="*.py;*.sublime-*;">
+			<drive name="E:">
+				<folder name="_e">
+					<folder name="_at">
+						<folder name="py_lib" marked="1" recursemasks="1"/>
+						<folder name="subl_">
+							<folder name="_add">
+								<folder name="_learn">
+									<folder name="python" marked="1" recursemasks="1"/>
+								</folder>
+								<folder name="_snippet">
+									<folder name="python" marked="1" recursemasks="1"/>
+								</folder>
+							</folder>
+						</folder>
+						<folder name="Sublime_1">
+							<folder name="Data">
+								<folder name="Packages">
+									<folder name="_lib_subl" marked="1" recursemasks="1"/>
+								</folder>
+							</folder>
+						</folder>
+					</folder>
+				</folder>
+			</drive>
+		</fileselection>
+		<action actiontype="simple" searchtype="literal" concurrent="1" casesensitive="1" wholewords="1">
+			<searchtext>lib_file</searchtext>
+			<sectioning sectiontype="whole file"/>
+			<context contexttype="line" numbering="1" extra="context"/>
+		</action>
+	</actionfile>
+</pgr:powergrep>

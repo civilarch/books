@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pgr:powergrep xmlns:pgr="http://www.powergrep.com/powergrep42.xsd" version="4.2">
+	<actionfile>
+		<fileselection archives="1" globalmasks="1">
+			<drive name="E:">
+				<folder name="_e">
+					<folder name="_ess">
+						<folder name="Sublime" marked="1" recursemasks="1"/>
+						<folder name="Sublime_01" marked="1" recursemasks="1"/>
+						<folder name="Sublime_29" marked="1" recursemasks="1"/>
+						<folder name="sublime_3126" marked="1" recursemasks="1"/>
+						<folder name="Sublime_pa_99" marked="1" recursemasks="1"/>
+						<folder name="Sublime_pa_last" marked="1" recursemasks="1"/>
+						<folder name="Sublime_pure_es" marked="1" recursemasks="1"/>
+						<folder name="sublime_setup" marked="1" recursemasks="1"/>
+						<folder name="sublime_setup_3126" marked="1" recursemasks="1"/>
+					</folder>
+				</folder>
+			</drive>
+		</fileselection>
+		<action actiontype="replace" searchtype="literal" concurrent="1" casesensitive="1" wholewords="1" targettype="same" backuptype="single bak" backupdest="folder tree" backuplocation="C:\_vols\_d\_ess\PowerGREP_backup">
+			<searchtext>get_sd_sublime</searchtext>
+			<replacetext>sd_sublime_get</replacetext>
+			<sectioning sectiontype="whole file"/>
+			<context contexttype="line" numbering="1" extra="context"/>
+		</action>
+	</actionfile>
+</pgr:powergrep>

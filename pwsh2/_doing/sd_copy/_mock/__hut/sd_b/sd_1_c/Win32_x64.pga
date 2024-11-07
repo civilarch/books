@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pgr:powergrep xmlns:pgr="http://www.powergrep.com/powergrep42.xsd" version="4.2">
+	<actionfile>
+		<fileselection archives="1" globalmasks="1" includemasks="*.vcxproj;*.sln;*.proj;">
+			<drive name="W:">
+				<folder name="_impose_t8_SY_64" marked="1" recursemasks="1"/>
+			</drive>
+		</fileselection>
+		<action actiontype="replace" searchtype="literal" concurrent="1" targettype="same" backuptype="single bak" backupdest="folder tree" backuplocation="C:\_vols\_d\_ess\PowerGREP_backup">
+			<searchtext>Win32</searchtext>
+			<replacetext>x64</replacetext>
+			<sectioning sectiontype="whole file"/>
+			<context contexttype="line" numbering="1" extra="context"/>
+		</action>
+	</actionfile>
+</pgr:powergrep>

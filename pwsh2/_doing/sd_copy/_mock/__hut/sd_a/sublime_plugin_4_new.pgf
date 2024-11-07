@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pgr:powergrep xmlns:pgr="http://www.powergrep.com/powergrep42.xsd" version="4.2">
+	<fileselectionfile archives="1" globalmasks="1">
+		<drive name="D:">
+			<folder name="_d">
+				<folder name="_at">
+					<folder name="py_lib_new" marked="1" recursemasks="1"/>
+					<folder name="sublime_1_new">
+						<folder name="Data">
+							<folder name="Packages" marked="1" recursemasks="1"/>
+						</folder>
+					</folder>
+				</folder>
+			</folder>
+		</drive>
+		<drive name="E:">
+			<folder name="_d">
+				<folder name="_at">
+					<folder name="sublime_src" marked="1" recursemasks="1"/>
+				</folder>
+			</folder>
+		</drive>
+	</fileselectionfile>
+</pgr:powergrep>
